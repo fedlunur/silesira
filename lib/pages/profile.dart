@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'dart:io';
 import 'package:afrotieapp/widgets/custom_bottom_navigation.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 // Assuming the CustomBottomNavigationBar is in a separate file
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -22,19 +26,19 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF9F7F7),
+      backgroundColor: const Color(0xFFF9F7F7),
       appBar: AppBar(
-        title: Text('Profile'),
-        backgroundColor: Color(0xFF3F72AF),
+        title: const Text('Profile'),
+        backgroundColor: const Color(0xFF3F72AF),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             context.go('/home'); // Navigates to the Home page
           },
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.history),
+            icon: const Icon(Icons.history),
             onPressed: () {
               context.push('/transactionhistory');
             },
@@ -58,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -70,9 +74,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         ? FileImage(profileImage!)
                         : avatarUrl.isNotEmpty
                             ? NetworkImage(avatarUrl) as ImageProvider
-                            : AssetImage('assets/default_avatar.png'),
+                            : const AssetImage('assets/default_avatar.png'),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -81,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         style:
                             Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF112D4E),
+                                  color: const Color(0xFF112D4E),
                                 ),
                       ),
                       Text(
@@ -95,15 +99,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           changeProfilePicture();
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Color(0xFF3F72AF),
+                          foregroundColor: const Color(0xFF3F72AF),
                         ),
-                        child: Text('Change Profile Picture'),
+                        child: const Text('Change Profile Picture'),
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildMenuTile(
                 icon: Icons.star,
                 title: 'Watchlist',
@@ -111,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   context.push('/watchlist');
                 },
               ),
-              Divider(),
+              const Divider(),
               _buildMenuTile(
                 icon: Icons.lock,
                 title: 'Change Password',
@@ -119,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   changePassword(context);
                 },
               ),
-              Divider(),
+              const Divider(),
               _buildMenuTile(
                 icon: Icons.house,
                 title: 'Posted Properties',
@@ -127,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   context.push('/postedproperties');
                 },
               ),
-              Divider(),
+              const Divider(),
               _buildMenuTile(
                 icon: Icons.history,
                 title: 'Transaction History',
@@ -176,8 +180,8 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Choose from Gallery'),
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Choose from Gallery'),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final pickedFile = await imagepicker.pickImage(
@@ -195,8 +199,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.camera_alt),
-                title: Text('Take a Photo'),
+                leading: const Icon(Icons.camera_alt),
+                title: const Text('Take a Photo'),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final pickedFile = await imagepicker.pickImage(
@@ -249,14 +253,14 @@ class _ProfilePageState extends State<ProfilePage> {
       builder: (BuildContext context) {
         final TextEditingController currentPasswordController =
             TextEditingController();
-        final String correctPassword = '12345678';
+        const String correctPassword = '12345678';
 
         return AlertDialog(
-          title: Text('Enter Current Password'),
+          title: const Text('Enter Current Password'),
           content: TextField(
             controller: currentPasswordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Current Password',
               border: OutlineInputBorder(),
             ),
@@ -266,7 +270,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -275,13 +279,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   context.push('/forgetresset', extra: {'isResetMode': true});
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Incorrect password. Please try again.'),
                     ),
                   );
                 }
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         );
@@ -294,22 +298,22 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Account'),
-          content: Text(
+          title: const Text('Delete Account'),
+          content: const Text(
               'Are you sure you want to delete your account? This action cannot be undone.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 print('Account deleted');
               },
-              child: Text('Delete'),
+              child: const Text('Delete'),
             ),
           ],
         );

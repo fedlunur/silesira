@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:afrotieapp/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +65,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
             leading: Padding(
               padding: EdgeInsets.only(top: appBarHeight * 0.2),
               child: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   if (GoRouter.of(context).canPop()) {
                     GoRouter.of(context).pop();
@@ -91,7 +93,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
           child: SafeArea(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -120,7 +122,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
                         decoration: InputDecoration(
                           labelText: "Email Address",
                           filled: true,
-                          fillColor: Color(0xFFDBE2EF),
+                          fillColor: const Color(0xFFDBE2EF),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -136,7 +138,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
                         decoration: InputDecoration(
                           labelText: "New Password",
                           filled: true,
-                          fillColor: Color(0xFFDBE2EF),
+                          fillColor: const Color(0xFFDBE2EF),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -151,7 +153,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
                         decoration: InputDecoration(
                           labelText: "Confirm New Password",
                           filled: true,
-                          fillColor: Color(0xFFDBE2EF),
+                          fillColor: const Color(0xFFDBE2EF),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -222,7 +224,7 @@ class _ForgetResetPasswordPageState extends State<ForgetResetPasswordPage> {
                             ? "Forgot your email? Go back to forget password"
                             : "Have a reset link? Go back to reset password",
                         style: theme.textTheme.bodySmall
-                            ?.copyWith(color: Color(0xFF112D4E)),
+                            ?.copyWith(color: const Color(0xFF112D4E)),
                       ),
                     ),
                   ],

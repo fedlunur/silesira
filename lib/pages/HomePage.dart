@@ -1,11 +1,15 @@
+// ignore_for_file: file_names
+
 import 'package:afrotieapp/models/product_model.dart';
 import 'package:afrotieapp/widgets/PropertyCard.dart';
 import 'package:afrotieapp/widgets/custom_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'search_and_filter_page.dart'; // Ensure this points to your actual product model
+import 'search_and_filter_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -30,7 +34,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Filtered properties based on search query and selected categories
     final filteredProducts = products.where((product) {
       final matchesCategory = selectedCategories.isEmpty ||
           selectedCategories.contains(product.category);
@@ -42,10 +45,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          // Search and Filter Section
           SearchAndFilterPage(
-            categories: _categories, // Pass the categories list
-           // products: products, // Pass the products list
+            categories: _categories,
             onFilterChanged: (filters) {
               setState(() {
                 selectedCategories = filters;
@@ -57,8 +58,6 @@ class _HomePageState extends State<HomePage> {
               });
             },
           ),
-
-          // Properties Grid Section
           Expanded(
             child: filteredProducts.isEmpty
                 ? const Center(
@@ -79,7 +78,12 @@ class _HomePageState extends State<HomePage> {
                     itemCount: filteredProducts.length,
                     itemBuilder: (context, index) {
                       final product = filteredProducts[index];
-                      return PropertyCard(product: product);
+                      return GestureDetector(
+                        onTap: () {
+                          context.go('/detail', extra: product);
+                        },
+                        child: PropertyCard(product: product),
+                      );
                     },
                   ),
           ),
@@ -96,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               context.go('/home');
               break;
             case 1:
-              context.go('/add');
+              context.go('/addproperty');
               break;
             case 2:
               context.go('/notifications');

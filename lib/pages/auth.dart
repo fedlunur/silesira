@@ -78,6 +78,31 @@ class _AuthPageState extends State<AuthPage> {
                 ),
               ),
             ),
+            SafeArea(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.push('/home'); // Replace with your desired route.
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.customColor, // Optional styling
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text(
+                      "Continue as Guest",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             // Content
             SafeArea(
               child: Center(

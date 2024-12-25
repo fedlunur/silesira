@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:afrotieapp/models/product_model.dart';
 
@@ -41,7 +43,7 @@ class PropertyCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  product.price,
+                  product.price ?? 'Price not available',
                   style: TextStyle(
                     fontSize: screenWidth * 0.035,
                     color: Colors.green,
