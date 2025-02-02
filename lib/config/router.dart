@@ -1,6 +1,7 @@
 // import 'package:afrotieapp/models/itemDetails.dart';
 import 'package:afrotieapp/models/product_model.dart';
 import 'package:afrotieapp/pages/Add_property.dart';
+import 'package:afrotieapp/pages/ChatPage.dart';
 import 'package:afrotieapp/pages/HomePage.dart';
 import 'package:afrotieapp/pages/adding_accessories.dart';
 import 'package:afrotieapp/pages/adding_car.dart';
@@ -112,6 +113,12 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/addotherservices',
       builder: (context, state) => const OtherServicePage(),
+    ),
+    GoRoute(
+      path: '/chat',
+      builder: (context, state) => const Advertiser(
+        userName: '',
+      ),
     ),
   ],
 );

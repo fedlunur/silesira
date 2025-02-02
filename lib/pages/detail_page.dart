@@ -1,4 +1,5 @@
 import 'package:afrotieapp/models/product_model.dart';
+import 'package:afrotieapp/pages/ChatPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart'; // For making phone calls and sending messages
@@ -23,16 +24,6 @@ class _DetailsPageState extends State<DetailsPage> {
       await launchUrl(phoneUri);
     } else {
       debugPrint('Could not launch $phoneUri');
-    }
-  }
-
-  // Function to message the advertiser
-  void _messageAdvertiser(String phoneNumber) async {
-    final Uri smsUri = Uri(scheme: 'sms', path: phoneNumber);
-    if (await canLaunchUrl(smsUri)) {
-      await launchUrl(smsUri);
-    } else {
-      debugPrint('Could not launch $smsUri');
     }
   }
 
@@ -189,7 +180,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
               const Divider(thickness: 1),
 
-              // Call and Message Buttons
+              // Call and Chat Buttons
               Row(
                 children: [
                   Expanded(
@@ -208,11 +199,17 @@ class _DetailsPageState extends State<DetailsPage> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: widget.product.contact != null
-                          ? () => _messageAdvertiser(widget.product.contact!)
-                          : null,
-                      icon: const Icon(Icons.message),
-                      label: const Text('Message Advertiser'),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Advertiser(
+                            userName:
+                                widget.product.contact ?? 'Unknown Advertiser',
+                          ),
+                        ),
+                      ),
+                      icon: const Icon(Icons.chat),
+                      label: const Text('Chat Now'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         padding: const EdgeInsets.symmetric(vertical: 12),
